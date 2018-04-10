@@ -15,8 +15,8 @@ libmleatk_la_SOURCES = \
 	../../../common/src/AtkWireFunc.cxx \
 	../../../common/src/AtkWireMsg.cxx \
 	../../src/MlePlayer.cxx \
-	../../../../Core/util/common/src/mlDebug.c \
-	../../../../Core/util/common/src/mlErrno.c
+	$(MLE_HOME)/Core/util/common/src/mlDebug.c \
+	$(MLE_HOME)/Core/util/common/src/mlErrno.c
 
 # Linker options libTestProgram
 libmleatk_la_LDFLAGS = 
@@ -29,13 +29,12 @@ libmleatk_la_CPPFLAGS = \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../../common/include \
 	-I$(top_srcdir)/../../linux/include \
-	-I$(top_srcdir)/../../../DigitalWorkprint/lib/common/include \
-	-I$(top_srcdir)/../../../DigitalWorkprint/lib/linux/include \
-	-I$(top_srcdir)/../../../Parts/sets/inventor \
-	-I$(top_srcdir)/../../../Parts/roles/common/include \
-	-I$(top_srcdir)/../../../Core/mlert/common/src/foundation \
-	-I$(top_srcdir)/../../../Core/util/common/include \
-	-I$(top_srcdir)/../../../Core/util/linux/include \
-	-I$(top_srcdir)/../../../Core/math/common/include \
-	-I$(top_srcdir)/../../../Core/math/linux/include
-
+	-I$(MLE_HOME)/DigitalWorkprint/lib/common/include \
+	-I$(MLE_HOME)/DigitalWorkprint/lib/linux/include \
+	-I$(MLE_HOME)/Parts/sets/inventor \
+	-I$(MLE_HOME)/Parts/roles/common/include \
+	-I$(MLE_HOME)/Core/mlert/common/src/foundation \
+	-I$(MLE_HOME)/Core/util/common/include \
+	-I$(MLE_HOME)/Core/util/linux/include \
+	-I$(MLE_HOME)/Core/math/common/include \
+	-I$(MLE_HOME)/Core/math/linux/include
