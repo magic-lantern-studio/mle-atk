@@ -26,13 +26,13 @@
     <ClCompile Include="..\..\..\common\src\AtkWireMsg.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Core\util\common\src\mlDebug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\MlePlayer.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Core\util\common\src\mlErrno.c">
+    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlDebug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlErrno.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -61,13 +61,13 @@
     <ClInclude Include="..\..\include\mle\DwpPlatformTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Core\util\common\include\mle\mlDebug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\mle\MlePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Core\util\common\include\mle\mlErrno.h">
+    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlDebug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlErrno.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

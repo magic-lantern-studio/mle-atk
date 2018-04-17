@@ -30,19 +30,19 @@
     <ClCompile Include="..\..\..\common\src\AtkWireMsg.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Core\util\common\src\mlDebug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mleatk_rehearsal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\win32\src\MlePlayer.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Core\util\common\src\mlErrno.c">
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlDebug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlErrno.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,19 +71,19 @@
     <ClInclude Include="..\..\..\win32\include\mle\DwpPlatformTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Core\util\common\include\mle\mlDebug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\common\include\mle\mleatk_rehearsal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\win32\include\mle\MlePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Core\util\common\include\mle\mlErrno.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlDebug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlErrno.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

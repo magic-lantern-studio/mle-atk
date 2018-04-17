@@ -208,15 +208,15 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlDebug.c" />
+    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlErrno.c" />
     <ClCompile Include="..\..\..\common\src\AtkBasicArray.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWire.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWired.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWireFunc.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWireMsg.cxx" />
-    <ClCompile Include="..\..\..\..\Core\util\common\src\mlDebug.c" />
     <ClCompile Include="mleatk_rehearsal.cpp" />
     <ClCompile Include="..\..\..\win32\src\MlePlayer.cxx" />
-    <ClCompile Include="..\..\..\..\Core\util\common\src\mlErrno.c" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -225,6 +225,8 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlDebug.h" />
+    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlErrno.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkBasicArray.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkCommonStructs.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkWire.h" />
@@ -233,10 +235,8 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
     <ClInclude Include="..\..\..\common\include\mle\AtkWireMsg.h" />
     <ClInclude Include="..\..\..\win32\include\mle\DwpPlatformDefs.h" />
     <ClInclude Include="..\..\..\win32\include\mle\DwpPlatformTypes.h" />
-    <ClInclude Include="..\..\..\..\Core\util\common\include\mle\mlDebug.h" />
     <ClInclude Include="..\..\..\common\include\mle\mleatk_rehearsal.h" />
     <ClInclude Include="..\..\..\win32\include\mle\MlePlayer.h" />
-    <ClInclude Include="..\..\..\..\Core\util\common\include\mle\mlErrno.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
