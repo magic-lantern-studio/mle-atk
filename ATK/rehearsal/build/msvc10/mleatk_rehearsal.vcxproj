@@ -209,7 +209,6 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlDebug.c" />
-    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlErrno.c" />
     <ClCompile Include="..\..\..\common\src\AtkBasicArray.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWire.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWired.cxx" />
@@ -226,7 +225,6 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlDebug.h" />
-    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlErrno.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkBasicArray.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkCommonStructs.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkWire.h" />
