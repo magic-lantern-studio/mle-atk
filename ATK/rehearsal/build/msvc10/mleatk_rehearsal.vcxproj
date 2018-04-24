@@ -89,7 +89,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>mlertd.lib;mlmathd.lib;DWPd.lib;ivrolesd.lib;Mle3dSetd.lib;MleIvStaged.lib;coin3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mlertd.lib;mlmathd.lib;DWPd.lib;ivrolesd.lib;Mle3dSetd.lib;MleIvStaged.lib;utild.lib;coin3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)mleatkd.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(COINDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -118,7 +118,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>mlert.lib;mlmath.lib;DWP.lib;ivroles.lib;Mle3dSet.lib;MleIvStage.lib;coin3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mlert.lib;mlmath.lib;DWP.lib;ivroles.lib;Mle3dSet.lib;MleIvStage.lib;util.lib;coin3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)mleatk.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(COINDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -155,7 +155,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>mlertd.lib;mlmathd.lib;DWPd.lib;ivrolesd.lib;Mle3dSetd.lib;MleIvStaged.lib;coin3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mlertd.lib;mlmathd.lib;DWPd.lib;ivrolesd.lib;Mle3dSetd.lib;MleIvStaged.lib;utild.lib;coin3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)mleatkd.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib64\rehearsal;$(COINDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -187,7 +187,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>mlert.lib;mlmath.lib;DWP.lib;ivroles.lib;Mle3dSet.lib;MleIvStage.lib;coin3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mlert.lib;mlmath.lib;DWP.lib;ivroles.lib;Mle3dSet.lib;MleIvStage.lib;util.lib;coin3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)mleatk.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib64\rehearsal;$(COINDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -208,7 +208,6 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\mle-core-util\util\common\src\mlDebug.c" />
     <ClCompile Include="..\..\..\common\src\AtkBasicArray.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWire.cxx" />
     <ClCompile Include="..\..\..\common\src\AtkWired.cxx" />
@@ -224,7 +223,6 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\mle-core-util\util\common\include\mle\mlDebug.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkBasicArray.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkCommonStructs.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkWire.h" />
