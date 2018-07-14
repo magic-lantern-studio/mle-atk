@@ -26,6 +26,7 @@ libmleatk_la_LDFLAGS =
 libmleatk_la_CPPFLAGS = \
 	-DMLE_NOT_DLL \
 	-DMLE_REHEARSAL \
+	-DMLE_DIGITAL_WORKPRINT \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../../common/include \
 	-I$(top_srcdir)/../../linux/include \
