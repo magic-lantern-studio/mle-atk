@@ -15,7 +15,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2018 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -2442,7 +2442,7 @@ void
 MlePlayer::recvGetViewer()
 {
     MLE_ASSERT(MleStage::g_theStage);
-    char* viewerName = MleStage::g_theStage->getViewer();
+    const char* viewerName = MleStage::g_theStage->getViewer();
 
     AtkWireMsg* msg = new AtkWireMsg(m_objID, REPLY_MSG_NAME);
     msg->addParam(viewerName);
