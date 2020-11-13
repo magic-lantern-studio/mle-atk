@@ -8,14 +8,13 @@
  * managing a Magic Lantern Rehearsal Player.
  *
  * @author Mark S. Millard
- * @date May 5, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -63,10 +62,16 @@ class MlTransform;
 //class MleProperty;
 
 // Include system header files.
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef MLE_QT
+#include <QtGlobal>
+#include <QWidget>
+#include <QEvent>
+#else
 #include <X11/X.h>
 #include <X11/Xlib.h>
-#endif
+#endif /* ! MLE_QT */
+#endif /* __linux__ */
 #if defined(WIN32)
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers.
 #include <windows.h>
@@ -302,12 +307,16 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     virtual void recvGetSets(int x, int y);
 
     // Reparenting a window.
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+    virtual void recvReparentWindow(WId w);
+#else
     virtual void recvReparentWindow(Window w);
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 #if defined(WIN32)
 	virtual void recvReparentWindow(HWND w);
-#endif /* sgi */
+#endif /* WIN32 */
 
     // Setting a sets name.
     virtual void recvSetSetName(char* oldSetName, char* newSetName);
@@ -327,12 +336,16 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     virtual int sendLoadWorkprint(const char *filename);
 
 	// Sending the window over.
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+    virtual int sendWindow(WId w);
+#else
     virtual int sendWindow(Window w);
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 #if defined(WIN32)
 	virtual int sendWindow(HWND w);
-#endif /* sgi */
+#endif /* WIN32 */
 
     // Loading media refs across the wire.
     virtual MleDwpMediaRef* sendGetWorkprintMediaRef(const char* id);
@@ -359,12 +372,16 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     virtual int sendStats(int time);
 
     // Sending right mouse callback
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+    virtual int sendRightMouse(QEvent* e);
+#else
     virtual int sendRightMouse(XEvent* e);
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 #if defined(WIN32)
 	virtual int sendRightMouse(DWORD *e);
-#endif
+#endif /* WIN32 */
 
 
     /**************************************************************************
@@ -388,10 +405,14 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     **************************************************************************/
 
     // ds access
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+    WId getWID() { return m_wid; }
+#else
     Window getWID() { return m_wid; }
     VisualID getVID() { return m_vid; }
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 
     int isRunning() { return m_running; }
 
@@ -418,12 +439,16 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
 
     static void doubleClickCB(MleActor* actor, void* clientData);
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+    static void rightMouseCB(QEvent* e, void* clientData);
+#else
     static void rightMouseCB(XEvent* e, void* clientData);
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 #if defined(WIN32)
 	static void rightMouseCB(DWORD e, void* clientData);
-#endif
+#endif /* WIN32 */
 
     // Getting pref height and width.
     int getPrefWidth() { return m_prefWidth; }
@@ -459,10 +484,14 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     // XXX - how can we share this enum with playerMgr?
     enum MlePlacementState { ON_BACKGROUND, FLOATING };
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+    WId m_wid;
+#else
     Window m_wid;
     VisualID m_vid;
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
     int m_running;
     int m_quit;
 

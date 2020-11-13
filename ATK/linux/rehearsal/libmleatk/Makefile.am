@@ -1,4 +1,8 @@
 #######################################
+# The directory for object files and libraries of object code
+libdir = $(exec_prefix)/lib/mle/rehearsal
+
+#######################################
 # The list of libraries we are building seperated by spaces.
 # The 'lib_' indicates that these build products will be installed
 # in the $(libdir) directory. For example /usr/lib

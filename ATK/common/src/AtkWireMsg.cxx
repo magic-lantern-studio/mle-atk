@@ -7,14 +7,13 @@
  * This file contains the implementation of a class that defines a message.
  *
  * @author Mark S. Millard
- * @date May 5, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2020 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -273,7 +272,7 @@ AtkWireMsg::getParam(char* s)
     strcpy(s, ((char*) m_msgData) + m_curParamOffset);
     if (m_curParamOffset + strlen(s) + 1 > (unsigned int) getDataLength())
 	{
-		printf("WM: getParam (char*) error curParamOffset: %d  str: %s, %d  dataLength: %d\n",
+        printf("WM: getParam (char*) error curParamOffset: %d  str: %s, %zu  dataLength: %d\n",
 			 m_curParamOffset, s, strlen(s), getDataLength());
 		return(-1);
     }

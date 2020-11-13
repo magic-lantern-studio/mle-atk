@@ -125,7 +125,7 @@ gettimeofday(&starttime);
 	sprintf(dso_func,"initClass");
     initClass = (void (*)(void))GetProcAddress(handle,dso_func);
 #else
-    sprintf(dso_func,"initClass__%d%sSFv", strlen(className),className);
+    sprintf(dso_func,"initClass__%ld%sSFv", strlen(className),className);
     //void* handle = dlopen(NULL,RTLD_NOW);
 #ifdef TIMELOAD
 gettimeofday(&dlOpenTime);

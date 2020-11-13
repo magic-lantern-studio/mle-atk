@@ -8,7 +8,6 @@
  * managing a Magic Lantern Rehearsal Player.
  *
  * @author Mark S. Millard
- * @date May 5, 2003
  */
 
 // COPYRIGHT_BEGIN
@@ -46,6 +45,9 @@
 
 #if defined(__linux__)
 #include <signal.h>
+#if defined(MLE_QT)
+#include <QWindow>
+#endif
 #endif
 
 #include "mle/MlePlayer.h"
@@ -94,8 +96,8 @@
 #include "mle/3dcamc.h"
 
 
-// XXX - might want to change hardcoded strings to the name of the method
-// if the compiler allows this.
+// Todo: might want to change hardcoded strings to the name of the method
+//       if the compiler allows this.
 
 #define MAX_NAME_LENGTH 200
 
@@ -105,10 +107,10 @@
 
 #if defined(WIN32)
 typedef void (__cdecl *SIG_PF)(int signal);
-#endif
+#endif /* WIN32 */
 #if defined(__linux__)
 #define SIG_PF sighandler_t
-#endif
+#endif /* __linux__ */
 
 MlePlayer::MlePlayer(AtkWire* wire, void* objID) 
  : AtkWired("Player", wire, objID)
@@ -127,16 +129,16 @@ MlePlayer::MlePlayer(AtkWire* wire, void* objID)
     m_sendStats = 0;
 
     // Trap fatal signals to fflush diagnostic (stdout, stderr) pipes to tools.
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
     signal(SIGBUS, (SIG_PF) signalHandler);
 	signal(SIGSEGV, (SIG_PF) signalHandler);
     signal(SIGABRT, (SIG_PF) signalHandler);
 	signal(SIGSYS, (SIG_PF) signalHandler);
-#endif
+#endif /* __linux__ */
 #if defined(WIN32)
 	signal(SIGSEGV, (SIG_PF) signalHandler);
     signal(SIGABRT, (SIG_PF) signalHandler);
-#endif
+#endif /* WIN32 */
 }
 
 void MlePlayer::signalHandler(int signal, ...)
@@ -163,7 +165,7 @@ MlePlayer::~MlePlayer()
 #if defined(WIN32)
 #define STDOUT_FILENO _fileno(stdout)
 #define STDERR_FILENO _fileno(stderr)
-#endif
+#endif /* WIN32 */
 
 /*****************************************************************************
 * Creating a player
@@ -1052,7 +1054,22 @@ MlePlayer::deliverMsg(AtkWireMsg* msg)
 
     } else if (!strcmp("ReparentWindow", msg->m_msgName))
 	{
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+    	WId w;
+
+    	// Check parameters.
+    	int param;   // XXX passing an int as a window.
+    	int ret = msg->getParam(param);
+    	if (ret < 0) {
+    		printf("ERROR MlePlayer::deliverMsg - ReparentWindow failed\n");
+    		return(0);
+    	}
+
+    	// Go get the functions.
+    	w = (WId) param;
+    	recvReparentWindow(w);
+#else
 		Window w;
 
 		// Check parameters.
@@ -1066,7 +1083,8 @@ MlePlayer::deliverMsg(AtkWireMsg* msg)
 		// Go get the functions.
 		w = (Window) param;
 		recvReparentWindow(w);
-#endif /* sgi */
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 
     } else if (!strcmp("SetSetName", msg->m_msgName))
 	{
@@ -1215,7 +1233,7 @@ MlePlayer::recvGetActorPropertyNames(const char *actorName,
 		propName = new char *[numPropName + 1];
 		for(i = 0; i < numPropName; i++)
 			propName[i] = (char *) ((*propNameArray)[i]);
-		propName[i] = "";
+        propName[i] = const_cast<char *>("");
 
 		retMsg = new AtkWireMsg(m_objID, REPLY_MSG_NAME);
 		retMsg->addParam((const char**)propName);
@@ -2983,10 +3001,19 @@ MlePlayer::recvSetPerspective(char *setName, int perspectiveOnOff)
 
 }
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
 /*****************************************************************************
 * Reparenting a window
 *****************************************************************************/
+#ifdef Q_OS_UNIX
+void
+MlePlayer::recvReparentWindow(WId w)
+{
+    MLE_ASSERT(MleStage::g_theStage);
+    QWindow *window = QWindow::fromWinId(w);
+    MleStage::g_theStage->reparentWindow(window);
+}
+#else
 void
 MlePlayer::recvReparentWindow(Window w)
 {
@@ -2999,7 +3026,8 @@ MlePlayer::recvReparentWindow(Window w)
     delete msg;
 */
 }
-#endif
+#endif /* !Q_OS_UNIX */
+#endif /* __linux__ */
 #if defined(WIN32)
 void
 MlePlayer::recvReparentWindow(HWND w)
@@ -3007,7 +3035,7 @@ MlePlayer::recvReparentWindow(HWND w)
     MLE_ASSERT(MleStage::g_theStage);
     MleStage::g_theStage->reparentWindow(w);
 }
-#endif /* sgi */
+#endif /* WIN32 */
 
 /*****************************************************************************
 * Setting a sets name
@@ -3156,33 +3184,46 @@ MlePlayer::sendGetWorkprintMediaRef(const char* id)
     return((MleDwpMediaRef*) item);
 }
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
 /*****************************************************************************
 * Sending a window
 *****************************************************************************/
+#ifdef Q_OS_UNIX
+int
+MlePlayer::sendWindow(WId wid)
+{
+	if (m_wire->sendMsg(m_objID, "Window", &wid, sizeof(WId)) < 0)
+	{
+	    printf("PLAYER ERROR: sending window %d\n", wid);
+	    return (-1);
+	}
+	return(0);
+}
+#else
 int
 MlePlayer::sendWindow(Window wid)
 {
     if (m_wire->sendMsg(m_objID, "Window", &wid, sizeof(Window)) < 0)
 	{
-       printf("PLAYER ERROR: sending window %d\n", wid);
-       return (-1);
+        printf("PLAYER ERROR: sending window %d\n", wid);
+        return (-1);
     }
     return(0);
 }
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 #if defined(WIN32)
 int
 MlePlayer::sendWindow(HWND wid)
 {
     if (m_wire->sendMsg(m_objID, "Window", &wid, sizeof(HWND)) < 0)
 	{
-       printf("PLAYER ERROR: sending window %d\n", wid);
-       return (-1);
+        printf("PLAYER ERROR: sending window %d\n", wid);
+        return (-1);
     }
     return(0);
 }
-#endif /* sgi */
+#endif /* WIN32 */
 
 /*****************************************************************************
 * Sending back pick information
@@ -3377,11 +3418,31 @@ MlePlayer::sendStats(int stats)
     return(0);
 }
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
 /*****************************************************************************
 * Right mouse callback
 *****************************************************************************/
+#ifdef Q_OS_UNIX
 int 
+MlePlayer::sendRightMouse(QEvent* ev)
+{
+	printf("Sending Right mouse\n");
+
+    // Send message.
+    AtkWireMsg* msg = new AtkWireMsg(m_objID, "RightMouse");
+    msg->addParam(ev, sizeof(QEvent));
+
+    if (m_wire->sendMsg(msg) < 0)
+	{
+		printf("PLAYER ERROR: sending right Mouse\n");
+		delete msg;
+		return(-1);
+    }
+    delete msg;
+    return(0);
+}
+#else
+int
 MlePlayer::sendRightMouse(XEvent* ev)
 {
 	printf("Sending Right mouse\n");
@@ -3399,7 +3460,8 @@ MlePlayer::sendRightMouse(XEvent* ev)
     delete msg;
     return(0);
 }
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 #if defined(WIN32)
 int 
 MlePlayer::sendRightMouse(DWORD *ev)
@@ -3419,7 +3481,7 @@ MlePlayer::sendRightMouse(DWORD *ev)
     delete msg;
     return(0);
 }
-#endif /* sgi */
+#endif /* WIN32 */
 
 /*****************************************************************************
 * Registering with the stage
@@ -3436,9 +3498,12 @@ MlePlayer::registerWithStage()
     MleStage::g_theStage->setManipCallback(manipCB, this);
     MleStage::g_theStage->setFinishManipCallback(endManipCB, this);
     MleStage::g_theStage->setOpenCallback(doubleClickCB, this);
-#if defined(sgi)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+#else
     MleStage::g_theStage->setRightMouseCallback(rightMouseCB, this);
-#endif
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 }
 
 void
@@ -3464,7 +3529,7 @@ void MlePlayer :: startManipCB(MleActor* actor, void* clientData)
     MlePlayer* player = (MlePlayer*) clientData;
     MlTransform t;
     actor->getTransform(t);
-    player->sendManip("StartManip", (actor) ? actor->getName() : NULL, &t);
+    player->sendManip(const_cast<char*>("StartManip"), (actor) ? actor->getName() : NULL, &t);
 }
 
 void
@@ -3483,7 +3548,7 @@ MlePlayer::manipCB(MleActor* actor, void* clientData)
     int is2d = (role ? role->m_set->isa("Mle2dSet") : 0);
     int is3d = (is2d ? 0 : 1);
 
-    player->sendManip("Manip", actor->getName(), &t, is3d);
+    player->sendManip(const_cast<char*>("Manip"), actor->getName(), &t, is3d);
 }
 
 void MlePlayer :: endManipCB(MleActor* actor, void* clientData)
@@ -3491,13 +3556,13 @@ void MlePlayer :: endManipCB(MleActor* actor, void* clientData)
     MlePlayer* player = (MlePlayer*) clientData;
     MlTransform t;
     actor->getTransform(t);
-    player->sendManip("EndManip", (actor) ? actor->getName() : NULL, &t);
+    player->sendManip(const_cast<char*>("EndManip"), (actor) ? actor->getName() : NULL, &t);
 
     // XXX - Currently, we are just sending a list of properties that we
     // believe might change.
-    player->sendPropertyChange(actor, "position");
-    player->sendPropertyChange(actor, "orientation");
-    player->sendPropertyChange(actor, "transform");
+    player->sendPropertyChange(actor, const_cast<char*>("position"));
+    player->sendPropertyChange(actor, const_cast<char*>("orientation"));
+    player->sendPropertyChange(actor, const_cast<char*>("transform"));
 }
 
 void
@@ -3510,7 +3575,18 @@ MlePlayer::doubleClickCB(MleActor* actor, void* clientData)
     player->sendDoubleClick(actor, 0);
 }
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__)
+#ifdef Q_OS_UNIX
+void
+MlePlayer::rightMouseCB(QEvent* e, void* clientData)
+{
+    MlePlayer* player = (MlePlayer*) clientData;
+
+    // XXX  - Currently, we are just sending a list of properties that we
+    // believe might change.
+    player->sendRightMouse(e);
+}
+#else
 void
 MlePlayer::rightMouseCB(XEvent* e, void* clientData)
 {
@@ -3520,7 +3596,8 @@ MlePlayer::rightMouseCB(XEvent* e, void* clientData)
     // believe might change.
     player->sendRightMouse(e);
 }
-#endif /* sgi */
+#endif /* ! Q_OS_UNIX */
+#endif /* __linux__ */
 
 
 void MlePlayer::registerProp(MleActor *actor, const char *prop)
