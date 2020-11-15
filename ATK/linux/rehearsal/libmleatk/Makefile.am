@@ -22,8 +22,8 @@ libmleatk_la_SOURCES = \
 	$(MLE_HOME)/Core/util/common/src/mlDebug.c \
 	$(MLE_HOME)/Core/util/common/src/mlErrno.c
 
-# Linker options libTestProgram
-libmleatk_la_LDFLAGS = 
+# Linker options for libmletk
+libmleatk_la_LDFLAGS = -version-info 1:0:0
 
 # Compiler options. Here we are adding the include directory
 # to be searched for headers included in the source code.
