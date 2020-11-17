@@ -48,6 +48,7 @@ HEADERS += \
     $$PWD/../../../../common/include/mle/AtkWireFunc.h \
     $$PWD/../../../../common/include/mle/AtkWire.h \
     $$PWD/../../../../common/include/mle/AtkBasicArray.h \
+    $$PWD/../../../../common/include/mle/mleatk_rehearsal.h \
     $$PWD/../../../../linux/include/mle/MlePlayer.h
 
 # Default rules for deployment.
@@ -55,5 +56,6 @@ unix {
     target.path = /opt/MagicLantern/lib/mle/qt/rehearsal
     headers.path = /opt/MagicLantern/include/mle
     headers.files = $$HEADERS
+    INSTALLS += target headers
 }
 !isEmpty(target.path): INSTALLS += target
