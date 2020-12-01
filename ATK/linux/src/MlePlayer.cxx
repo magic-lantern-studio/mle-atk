@@ -296,7 +296,7 @@ MlePlayer::deliverMsg(AtkWireMsg* msg)
 		char propDataset[MAX_NAME_LENGTH];
 		int ret;
 
-		actorName[0] = propDataset[0] = NULL;
+        actorName[0] = propDataset[0] = '\0';
 		ret = msg->getParam(actorName);
 		if (ret >= 0)
 			ret = msg->getParam(propDataset);
@@ -2233,7 +2233,7 @@ MlePlayer::recvSetPosition(char* setName, char* actorName, int x, int y)
 		}
 		else
 		{
-			printf("PLAYER: setPosition: bad placement state %s\n", 
+            printf("PLAYER: setPosition: bad placement state %d\n",
 				m_curPlacementState);
 			return;
 		}
@@ -2876,7 +2876,7 @@ MlePlayer::recvGetSets(int /*x*/, int /*y*/)
 		// XXX - just return all sets for now
 		setNames[i] = set->getName();
     }
-    setNames[i] = ""; // Terminator needed?
+    setNames[i] = (char *)""; // Terminator needed?
     delete iterator;
 
     AtkWireMsg* msg = new AtkWireMsg(m_objID, REPLY_MSG_NAME);
@@ -3194,7 +3194,7 @@ MlePlayer::sendWindow(WId wid)
 {
 	if (m_wire->sendMsg(m_objID, "Window", &wid, sizeof(WId)) < 0)
 	{
-	    printf("PLAYER ERROR: sending window %d\n", wid);
+        printf("PLAYER ERROR: sending window %llu\n", wid);
 	    return (-1);
 	}
 	return(0);
