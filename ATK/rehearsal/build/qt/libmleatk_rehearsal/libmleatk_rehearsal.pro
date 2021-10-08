@@ -7,7 +7,8 @@ DEFINES += LIBMLEATK_REHEARSAL_LIBRARY
 CONFIG += c++11
 
 unix: MLE_ROOT = /opt/MagicLantern
-unix: MLE_HOME = /home/msm/Projects/MagicLanternStudio
+#unix: MLE_HOME = /media/workarea/msm/Projects/WizzerWorks/MagicLanternPythonHome
+unix: MLE_HOME = $$(MLE_HOME)
 
 INCLUDEPATH += \
     $$PWD/../../../../linux/include \
