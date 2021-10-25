@@ -6,15 +6,13 @@
  *
  * This file contains the implementation of a class that provides utility for
  * managing a Magic Lantern Rehearsal Player.
- *
- * @author Mark S. Millard
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +41,7 @@
 //
 // COPYRIGHT_END
 
-#if defined(__linux__)
+#if defined(__linux__) || defined (__APPLE__)
 #include <signal.h>
 #if defined(MLE_QT)
 #include <QWindow>
@@ -111,6 +109,9 @@ typedef void (__cdecl *SIG_PF)(int signal);
 #if defined(__linux__)
 #define SIG_PF sighandler_t
 #endif /* __linux__ */
+typedef void (*SIG_PF) (int);
+#if defined(__APPLE__)
+#endif /* __APPLE__ */
 
 MlePlayer::MlePlayer(AtkWire* wire, void* objID) 
  : AtkWired("Player", wire, objID)
@@ -129,7 +130,7 @@ MlePlayer::MlePlayer(AtkWire* wire, void* objID)
     m_sendStats = 0;
 
     // Trap fatal signals to fflush diagnostic (stdout, stderr) pipes to tools.
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
     signal(SIGBUS, (SIG_PF) signalHandler);
 	signal(SIGSEGV, (SIG_PF) signalHandler);
     signal(SIGABRT, (SIG_PF) signalHandler);
@@ -1054,7 +1055,7 @@ MlePlayer::deliverMsg(AtkWireMsg* msg)
 
     } else if (!strcmp("ReparentWindow", msg->m_msgName))
 	{
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
     	WId w;
 
@@ -1164,7 +1165,6 @@ MlePlayer::recvPause()
 /*****************************************************************************
 * Moving current actor to the target
 *****************************************************************************/
-
 int 
 MlePlayer::recvMoveToTarget()
 {
@@ -3001,7 +3001,7 @@ MlePlayer::recvSetPerspective(char *setName, int perspectiveOnOff)
 
 }
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 /*****************************************************************************
 * Reparenting a window
 *****************************************************************************/
@@ -3184,7 +3184,7 @@ MlePlayer::sendGetWorkprintMediaRef(const char* id)
     return((MleDwpMediaRef*) item);
 }
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 /*****************************************************************************
 * Sending a window
 *****************************************************************************/
@@ -3418,7 +3418,7 @@ MlePlayer::sendStats(int stats)
     return(0);
 }
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 /*****************************************************************************
 * Right mouse callback
 *****************************************************************************/
@@ -3498,7 +3498,7 @@ MlePlayer::registerWithStage()
     MleStage::g_theStage->setManipCallback(manipCB, this);
     MleStage::g_theStage->setFinishManipCallback(endManipCB, this);
     MleStage::g_theStage->setOpenCallback(doubleClickCB, this);
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
 #else
     MleStage::g_theStage->setRightMouseCallback(rightMouseCB, this);
@@ -3575,7 +3575,7 @@ MlePlayer::doubleClickCB(MleActor* actor, void* clientData)
     player->sendDoubleClick(actor, 0);
 }
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
 void
 MlePlayer::rightMouseCB(QEvent* e, void* clientData)

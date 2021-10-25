@@ -6,16 +6,13 @@
  *
  * This file contains utilities for managing functions that
  * send and recieve messages over a wire.
- *
- * @author Mark S. Millard
- * @date May 5, 2003
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +50,7 @@
 #include <mle/MleDsoLoader.h>
 #include <mle/mlDebug.h>
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #include <dlfcn.h>
 #include <sys/time.h>
 #endif
@@ -66,7 +63,7 @@
 AtkCreateWireFuncArray AtkWireFunc::g_wireFuncs;
 AtkCreateWireFuncArray AtkWireFunc::g_recvWireFuncs;
 
-#if defined(sgi) || defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #define WIRE_FUNC_DSO_PATH "/usr/share/mle/plug-ins/wirefuncs"
 #else
 #define WIRE_FUNC_DSO_PATH "C:\\Program Files\\Wizzer Works\\Auteur\\Magic Lantern\\plug-ins\\wirefuncs"

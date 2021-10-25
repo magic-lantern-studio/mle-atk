@@ -13,7 +13,8 @@ unix: MLE_HOME = $$(MLE_HOME)
 INCLUDEPATH += \
     $$PWD/../../../../linux/include \
     $$PWD/../../../../common/include \
-    /opt/MagicLantern/include
+    /opt/MagicLantern/include \
+    /usr/local/include
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -51,6 +52,11 @@ HEADERS += \
     $$PWD/../../../../common/include/mle/AtkBasicArray.h \
     $$PWD/../../../../common/include/mle/mleatk_rehearsal.h \
     $$PWD/../../../../linux/include/mle/MlePlayer.h
+
+macx {
+    # Set the LFLAGS so that dynamic libraries behave like Linux DSOs.
+    QMAKE_LFLAGS += -undefined suppress -flat_namespace
+}
 
 # Default rules for deployment.
 unix {

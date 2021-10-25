@@ -6,15 +6,13 @@
  *
  * This file contains a class that provides utility for
  * managing a Magic Lantern Rehearsal Player.
- *
- * @author Mark S. Millard
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2020 Wizzer Works
+// Copyright (c) 2015-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -62,7 +60,7 @@ class MlTransform;
 //class MleProperty;
 
 // Include system header files.
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef MLE_QT
 #include <QtGlobal>
 #include <QWidget>
@@ -307,7 +305,7 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     virtual void recvGetSets(int x, int y);
 
     // Reparenting a window.
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
     virtual void recvReparentWindow(WId w);
 #else
@@ -336,7 +334,7 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     virtual int sendLoadWorkprint(const char *filename);
 
 	// Sending the window over.
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
     virtual int sendWindow(WId w);
 #else
@@ -372,7 +370,7 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     virtual int sendStats(int time);
 
     // Sending right mouse callback
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
     virtual int sendRightMouse(QEvent* e);
 #else
@@ -405,7 +403,7 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     **************************************************************************/
 
     // ds access
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
     WId getWID() { return m_wid; }
 #else
@@ -439,7 +437,7 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
 
     static void doubleClickCB(MleActor* actor, void* clientData);
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
     static void rightMouseCB(QEvent* e, void* clientData);
 #else
@@ -484,7 +482,7 @@ class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
     // XXX - how can we share this enum with playerMgr?
     enum MlePlacementState { ON_BACKGROUND, FLOATING };
 
-#if defined(__linux__)
+#if defined(__linux__) || defined(__APPLE__)
 #ifdef Q_OS_UNIX
     WId m_wid;
 #else
