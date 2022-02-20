@@ -2425,7 +2425,7 @@ void
 MlePlayer::recvGetViewer()
 {
     MLE_ASSERT(MleStage::g_theStage);
-    char* viewerName = MleStage::g_theStage->getViewer();
+    const char* viewerName = MleStage::g_theStage->getViewer();
 
     AtkWireMsg* msg = new AtkWireMsg(m_objID, REPLY_MSG_NAME);
     msg->addParam(viewerName);
