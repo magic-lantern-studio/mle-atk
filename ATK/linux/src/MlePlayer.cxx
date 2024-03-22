@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2024 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -194,7 +194,7 @@ MlePlayer::create(int argc, char* argv[])
 	MLE_DEBUG_CAT("ATK",
 		printf("ErrorFD = %d\n", errorFD);
 	);
-    sscanf(argv[4], "%d", &m_objID);
+    sscanf(argv[4], "%p", &m_objID);
 	MLE_DEBUG_CAT("ATK",
 		printf("ObjID = %d\n", m_objID);
 	);
@@ -387,7 +387,7 @@ MlePlayer::deliverMsg(AtkWireMsg* msg)
 		char actorClass[MAX_NAME_LENGTH];
 		int ret;
 
-		actorName[0] = actorClass[0] = NULL;
+		actorName[0] = actorClass[0] = 0;
 		ret = msg->getParam(actorName);
 		if(ret >= 0)
 			ret = msg->getParam(actorClass);
@@ -3205,7 +3205,7 @@ MlePlayer::sendWindow(Window wid)
 {
     if (m_wire->sendMsg(m_objID, "Window", &wid, sizeof(Window)) < 0)
 	{
-        printf("PLAYER ERROR: sending window %d\n", wid);
+        printf("PLAYER ERROR: sending window %ld\n", wid);
         return (-1);
     }
     return(0);
