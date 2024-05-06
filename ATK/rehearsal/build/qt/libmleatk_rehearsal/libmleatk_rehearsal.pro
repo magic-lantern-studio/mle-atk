@@ -39,9 +39,8 @@ SOURCES += \
     $$PWD/../../../../common/src/AtkWired.cxx \
     $$PWD/../../../../common/src/AtkWireFunc.cxx \
     $$PWD/../../../../common/src/AtkWireMsg.cxx \
-    $$PWD/../../../../linux/src/MlePlayer.cxx \
-    $$MLE_HOME/Core/util/common/src/mlDebug.c \
-    $$MLE_HOME/Core/util/common/src/mlErrno.c
+    $$PWD/../../../../linux/src/MlePlayer.cxx
+
 
 HEADERS += \
     $$PWD/../../../../common/include/mle/AtkCommonStructs.h \
@@ -65,4 +64,4 @@ unix {
     headers.files = $$HEADERS
     INSTALLS += target headers
 }
-!isEmpty(target.path): INSTALLS += target
+#!isEmpty(target.path): INSTALLS += target
