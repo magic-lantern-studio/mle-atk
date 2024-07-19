@@ -60,7 +60,11 @@ AtkWired::AtkWired(const char* name, AtkWire* wire, void* objID)
 {
     this->m_wire = wire;
     this->m_objID = objID;
+#if defined(WIN32)
+	this->m_name = name ? _strdup(name) : _strdup("");
+#else
     this->m_name = name ? strdup(name) : strdup("");
+#endif
 
     m_userData2 = m_userData = 0;
     m_parentData = 0;

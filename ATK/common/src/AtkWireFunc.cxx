@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2024 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -196,7 +196,11 @@ AtkWireFunc::addToArray(const char* name, AtkCreateFunc createFunc)
 {
     struct AtkCreateWireFunc* cwf = new AtkCreateWireFunc;
     cwf->createFunc = createFunc;
+#if defined(WIN32)
+	cwf->name = _strdup(name);
+#else
     cwf->name = strdup(name);
+#endif
     g_wireFuncs.add(cwf);
     //printf("Added: %s to array - len %d\n", name, wireFuncs.getLength());
 }
@@ -206,7 +210,11 @@ AtkWireFunc::addToRecvArray(const char* name, AtkCreateFunc createFunc)
 {
     struct AtkCreateWireFunc* cwf = new AtkCreateWireFunc;
     cwf->createFunc = createFunc;
+#if defined(WIN32)
+	cwf->name = _strdup(name);
+#else
     cwf->name = strdup(name);
+#endif
     g_recvWireFuncs.add(cwf);
     //printf("Added: %s to recv array - len %d\n", name, recvWireFuncs.getLength());
 }
