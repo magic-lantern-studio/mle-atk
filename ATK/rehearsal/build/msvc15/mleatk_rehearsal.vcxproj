@@ -65,17 +65,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\mleatk_rehearsal\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\mleatk_rehearsal\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mleatk</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mleatkd</TargetName>
@@ -164,25 +164,35 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\mleatk_rehearsal\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\mleatk_rehearsal\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>mlertd.lib;mlmathd.lib;DWPd.lib;ivrolesd.lib;Mle3dSetd.lib;MleIvStaged.lib;utild.lib;coin4d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)mleatkd.dll</OutputFile>
+      <OutputFile>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatkd.dll</OutputFile>
       <AdditionalLibraryDirectories>$(MLE_HOME)\lib64\rehearsal;$(COINDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatkd.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(MLE_HOME)\lib64\rehearsal
-copy x64\Debug\mleatkd.lib $(MLE_HOME)\lib64\rehearsal\mleatkd.lib
+copy x64\Debug\mleatk_rehearsal\mleatkd.lib $(MLE_HOME)\lib64\rehearsal\mleatkd.lib
 mkdir $(MLE_HOME)\bin64\rehearsal
-copy x64\Debug\mleatkd.dll $(MLE_HOME)\bin64\rehearsal
+copy x64\Debug\mleatk_rehearsal\mleatkd.dll $(MLE_HOME)\bin64\rehearsal\mleatkd.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y ..\..\..\win32\include\mle\*.h $(MLE_HOME)\include\mle
 xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
 </Command>
     </PostBuildEvent>
+    <Bscmake>
+      <OutputFile>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.bsc</OutputFile>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -196,6 +206,11 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeaderOutputFile>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(Platform)\$(Configuration)\mleatk_rehearsal\</AssemblerListingLocation>
+      <ObjectFileName>$(Platform)\$(Configuration)\mleatk_rehearsal\</ObjectFileName>
+      <ProgramDataBaseFileName>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>mlert.lib;mlmath.lib;DWP.lib;ivroles.lib;Mle3dSet.lib;MleIvStage.lib;util.lib;coin4.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -206,17 +221,22 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
+      <ProgramDatabaseFile>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(MLE_HOME)\lib64\rehearsal
-copy x64\Release\mleatk.lib $(MLE_HOME)\lib64\rehearsal\mleatk.lib
+copy x64\Release\mleatk_rehearsal\mleatk.lib $(MLE_HOME)\lib64\rehearsal\mleatk.lib
 mkdir $(MLE_HOME)\bin64\rehearsal
-copy x64\Release\mleatk.dll $(MLE_HOME)\bin64\rehearsal
+copy x64\Release\mleatk_rehearsal\mleatk.dll $(MLE_HOME)\bin64\rehearsal\mleatk.dll
 mkdir $(MLE_HOME)\include\mle
 xcopy /y ..\..\..\win32\include\mle\*.h $(MLE_HOME)\include\mle
 xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
 </Command>
     </PostBuildEvent>
+    <Bscmake>
+      <OutputFile>$(Platform)\$(Configuration)\mleatk_rehearsal\mleatk.bsc</OutputFile>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\common\src\AtkBasicArray.cxx" />
