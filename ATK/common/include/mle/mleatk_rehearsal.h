@@ -37,7 +37,7 @@
 // that uses this DLL. This way any other project whose source files include this file see 
 // MLEATK_REHEARSAL_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
-#if defined(WIN32)
+#if defined(WIN32) && defined(MLE_DLL)
 #ifdef MLEATK_REHEARSAL_EXPORTS
 #define MLEATK_REHEARSAL_API __declspec(dllexport)
 #else
