@@ -49,6 +49,13 @@ install:
     ./configure;
     make;
     sudo MLE_ROOT=$MLE_ROOT make install
+- sh: >-
+    git clone -q --branch=master https://github.com/magic-lantern-studio/mle-parts.git /home/appveyor/projects/mle-part;
+    cd /home/appveyor/projects/mle-parts/Parts/props/linux;
+    autoreconf --install;
+    ./configure;
+    make;
+    sudo MLE_ROOT=$MLE_ROOT make install
 
 # Custom script to build Magic Lantern Authoring Toolkit using autoconf tools.
 build_script:
