@@ -13,6 +13,8 @@ install:
 - sh: >-
     sudo apt install libx11-dev;
     sudo apt install libxt-dev
+
+# Install Magic Lantern Utility library dependency.
 - sh: >-
     sudo mkdir $MLE_ROOT;
     git clone -q --branch=master https://github.com/magic-lantern-studio/mle-core-util.git /home/appveyor/projects/mle-core-util;
@@ -21,6 +23,8 @@ install:
     ./configure;
     make;
     sudo MLE_ROOT=$MLE_ROOT make install
+
+# Install Magic Lantern Math library dependency.
 - sh: >-
     git clone -q --branch=master https://github.com/magic-lantern-studio/mle-core-math.git /home/appveyor/projects/mle-core-math;
     cd /home/appveyor/projects/mle-core-math/math/linux/libmlmath;
@@ -28,6 +32,8 @@ install:
     ./configure;
     make;
     sudo MLE_ROOT=$MLE_ROOT make install
+
+# Install Magic Lantern Digital Workprint dependencies
 - sh: >-
     git clone -q --branch=master https://github.com/magic-lantern-studio/mle-core-dwp.git /home/appveyor/projects/mle-core-dwp;
     cd /home/appveyor/projects/mle-core-dwp/DigitalWorkprint/lib/linux;
@@ -35,6 +41,8 @@ install:
     ./configure;
     make;
     sudo MLE_ROOT=$MLE_ROOT make install
+
+# Install Magic Lantern Digital Playprint dependencies.
 - sh: >-
     git clone -q --branch=master https://github.com/magic-lantern-studio/mle-core-dpp.git /home/appveyor/projects/mle-core-dpp;
     cd /home/appveyor/projects/mle-core-dpp/DigitalPlayprint/lib/linux;
@@ -42,6 +50,8 @@ install:
     ./configure;
     make;
     sudo MLE_ROOT=$MLE_ROOT make install
+
+# Install Magic Lantern Runtime Engine dependency.
 - sh: >-
     git clone -q --branch=master https://github.com/magic-lantern-studio/mle-core-mlert.git /home/appveyor/projects/mle-core-mlert;
     cd /home/appveyor/projects/mle-core-mlert/mlert/linux/rehearsal;
@@ -49,13 +59,15 @@ install:
     ./configure;
     make;
     sudo MLE_ROOT=$MLE_ROOT make install
-- sh: >-
-    git clone -q --branch=master https://github.com/magic-lantern-studio/mle-parts.git /home/appveyor/projects/mle-part;
-    cd /home/appveyor/projects/mle-parts/Parts/props/linux;
-    autoreconf --install;
-    ./configure;
-    make;
-    sudo MLE_ROOT=$MLE_ROOT make install
+
+# Install Magic Lantern Props dependencies.
+#- sh: >-
+#    git clone -q --branch=master https://github.com/magic-lantern-studio/mle-parts.git /home/appveyor/projects/mle-parts;
+#    cd /home/appveyor/projects/mle-parts/Parts/props/linux;
+#    autoreconf --install;
+#    ./configure;
+#    make;
+#    sudo MLE_ROOT=$MLE_ROOT make install
 
 # Custom script to build Magic Lantern Authoring Toolkit using autoconf tools.
 build_script:
@@ -65,6 +77,8 @@ build_script:
     ./configure;
     make;
     sudo MLE_ROOT=$MLE_ROOT make install
+
+# Clean up dependencies before generating deployment package.
 - sh: >-
     cd /home/appveyor/projects/mle-core-util/util/linux/build;
     sudo MLE_ROOT=$MLE_ROOT make uninstall;
