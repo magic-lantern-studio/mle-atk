@@ -139,6 +139,14 @@ build_script:
     sudo MLE_ROOT=$MLE_ROOT make uninstall;
     cd /home/appveyor/projects/mle-core-mlert/mlert/linux/rehearsal;
     sudo MLE_ROOT=$MLE_ROOT make uninstall
+    cd /home/appveyor/projects/mle-parts/Parts/props/linux;
+    sudo MLE_ROOT=$MLE_ROOT make uninstall
+    cd /home/appveyor/projects/mle-parts/Parts/mediaref/inventor/build/linux/ivmref-rehearsal;
+    sudo MLE_ROOT=$MLE_ROOT make uninstall
+    cd /home/appveyor/projects/mle-parts/Parts/roles/inventor/build/linux/ivrole-rehearsal;
+    sudo MLE_ROOT=$MLE_ROOT make uninstall
+    cd /home/appveyor/projects/mle-parts/Parts/sets/inventor/build/ivset-rehearsal;
+    sudo MLE_ROOT=$MLE_ROOT make uninstall
 
 # Custom script to create an .zip file containing the Magic Lantern
 # Authoring Toolkit artifacts.
