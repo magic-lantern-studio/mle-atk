@@ -12,7 +12,29 @@ environment:
 install:
 - sh: >-
     sudo apt install libx11-dev;
-    sudo apt install libxt-dev
+    sudo apt install libxt-dev;
+    sudo apt-get install -y libmotif-dev;
+    sudo apt-get install -y libxmu-dev;
+    sudo apt-get install -y libxpm-dev;
+    sudo apt-get install -y libfreeimage-dev;
+    sudo apt-get install -y cmake
+
+# Install Coin 4.x library dependency.
+- sh: >-
+    sudo apt-get install -y mesa-common-dev libglu1-mesa-dev freeglut3-dev;
+    sudo apt-get install -y libboost-dev;
+    sudo apt-get install -y libboost-all-dev;
+    git clone -q --recurse-submodules --branch magiclantern https://github.com/magic-lantern-studio/coin coin;
+    cmake -Hcoin -Bcoin_build -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release -DCOIN_BUILD_DOCUMENTATION=OFF -DCOIN_BUILD_TESTS=OFF;
+    cd coin_build;
+    make;
+    sudo make install
+- sh: >-
+    git clone -q --recurse-submodules --branch magiclantern https://github.com/magic-lantern-studio/soxt soxt;
+    cmake -Hsoxt -Bsoxt_build -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_PREFIX_PATH="/usr/local" -DSOXT_BUILD_DOCUMENTATION=OFF;
+    cd soxt_build;
+    make;
+    sudo make install
 
 # Install Magic Lantern Utility library dependency.
 - sh: >-
@@ -61,13 +83,40 @@ install:
     sudo MLE_ROOT=$MLE_ROOT make install
 
 # Install Magic Lantern Props dependencies.
-#- sh: >-
-#    git clone -q --branch=master https://github.com/magic-lantern-studio/mle-parts.git /home/appveyor/projects/mle-parts;
-#    cd /home/appveyor/projects/mle-parts/Parts/props/linux;
-#    autoreconf --install;
-#    ./configure;
-#    make;
-#    sudo MLE_ROOT=$MLE_ROOT make install
+- sh: >-
+    git clone -q --branch=master https://github.com/magic-lantern-studio/mle-parts.git /home/appveyor/projects/mle-parts;
+    cd /home/appveyor/projects/mle-parts/Parts/props/linux;
+    autoreconf --install;
+    ./configure;
+    make;
+    sudo MLE_ROOT=$MLE_ROOT make install
+
+# Build Magic Lantern Media Reference libraries.
+- sh: >-
+    cd /home/appveyor/projects/mle-parts/Parts/mediaref/inventor/build/linux/ivmref-rehearsal;
+    autoreconf --install;
+    ./configure;
+    make clean;
+    make;
+    sudo MLE_ROOT=$MLE_ROOT make install
+
+# Build Magic Lantern Role libraries.
+- sh: >-
+    cd /home/appveyor/projects/mle-parts/Parts/roles/inventor/build/linux/ivrole-rehearsal;
+    autoreconf --install;
+    ./configure;
+    make clean;
+    make;
+    sudo MLE_ROOT=$MLE_ROOT make install
+
+# Build Magic Lantern Set libraries.
+- sh: >-
+    cd /home/appveyor/projects/mle-parts/Parts/sets/inventor/build/ivset-rehearsal;
+    autoreconf --install;
+    ./configure;
+    make clean;
+    make;
+    sudo MLE_ROOT=$MLE_ROOT make install
 
 # Custom script to build Magic Lantern Authoring Toolkit using autoconf tools.
 build_script:
