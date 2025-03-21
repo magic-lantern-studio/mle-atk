@@ -97,7 +97,7 @@ typedef struct
 MLE_DECLARE_ARRAY(MlePropArray, MlePropStruct*);
 
 
-class MLEATK_REHEARSAL_API MlePlayer : public AtkWired
+class MLE_ATK_API MlePlayer : public AtkWired
 {
   public:
     
