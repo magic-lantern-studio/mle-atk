@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -45,11 +45,11 @@
 #define __ATK_WIRED_H_
 
 // Include system header files.
-#if defined(sgi)
+#if defined(__linux__)
 #include <unistd.h>
 #endif
 
-// Include Authoring 
+// Include Magic Lantern header files. 
 #include <mle/mleatk_rehearsal.h>
 #include <mle/AtkBasicArray.h>
 
@@ -61,7 +61,7 @@ class AtkWireFunc;
 MLE_DECLARE_ARRAY(AtkWireFuncArray, AtkWireFunc*);
 
 
-class MLEATK_REHEARSAL_API AtkWired 
+class MLE_ATK_API AtkWired 
 {
   public:
     

@@ -4,14 +4,14 @@
  * @file AtkWireMsg.h
  * @ingroup MleATK
  *
- * This file contains a class that defines a message.
+ * This file contains a class that defines an ATK message.
  */
 
 // COPYRIGHT_BEGIN
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -43,6 +43,7 @@
 #ifndef __ATK_WIREMSG_H_
 #define __ATK_WIREMSG_H_
 
+// Include Magic Lantern header files.
 #include <mle/mleatk_rehearsal.h>
 
 #define MAX_MSG_NAME_LEN 32
@@ -52,7 +53,7 @@
 class MlTransform;
 
 
-class MLEATK_REHEARSAL_API AtkWireMsg 
+class MLE_ATK_API AtkWireMsg 
 {
   public:
 

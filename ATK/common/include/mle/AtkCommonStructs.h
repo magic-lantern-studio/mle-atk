@@ -44,7 +44,7 @@
 #ifndef __ATK_COMMONSTRUCTS_H_
 #define __ATK_COMMONSTRUCTS_H_
 
-#if defined(sgi)
+#if defined(__linux__)
 #include <X11/X.h>
 
 struct VisualWindow

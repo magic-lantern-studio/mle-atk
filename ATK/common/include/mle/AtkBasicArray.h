@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2000-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -54,7 +54,7 @@
  *
  * It is designed to be extremely light weight with just enough function for a tinyUI.
  */
-class MLEATK_REHEARSAL_API AtkBasicArray
+class MLE_ATK_API AtkBasicArray
 {
   public:
 
@@ -154,7 +154,7 @@ class MLEATK_REHEARSAL_API AtkBasicArray
 
 
 #define MLE_DECLARE_ARRAY(name,type)												\
-class MLEATK_REHEARSAL_API name : public AtkBasicArray {							\
+class MLE_ATK_API name : public AtkBasicArray {							\
   public:																			\
     name() : AtkBasicArray(sizeof(type)) { }										\
     virtual ~name() { }																\

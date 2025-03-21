@@ -2,7 +2,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,21 +32,21 @@
 // COPYRIGHT_END
 
 // The following ifdef block is the standard way of creating macros which make exporting 
-// from a DLL simpler. All files within this DLL are compiled with the MLEATK_REHEARSAL_EXPORTS
+// from a DLL simpler. All files within this DLL are compiled with the MLE_ATK_EXPORTS
 // symbol defined on the command line. This symbol should not be defined on any project
 // that uses this DLL. This way any other project whose source files include this file see 
-// MLEATK_REHEARSAL_API functions as being imported from a DLL, whereas this DLL sees symbols
+// MLE_ATK_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
-#if defined(WIN32) && defined(MLE_DLL)
-#ifdef MLEATK_REHEARSAL_EXPORTS
-#define MLEATK_REHEARSAL_API __declspec(dllexport)
+#if defined(WIN32) && defined(MLE_ATK_DLL)
+  #ifdef MLE_ATK_EXPORTS
+    #define MLE_ATK_API __declspec(dllexport)
+  #else
+    #define MLE_ATK_API __declspec(dllimport)
+  #endif
 #else
-#define MLEATK_REHEARSAL_API __declspec(dllimport)
-#endif
-#else
-#ifdef MLEATK_REHEARSAL_EXPORTS
-#define MLEATK_REHEARSAL_API
-#else
-#define MLEATK_REHEARSAL_API
-#endif
+  #ifdef MLE_ATK_EXPORTS
+    #define MLE_ATK_API
+  #else
+    #define MLE_ATK_API
+  #endif
 #endif
