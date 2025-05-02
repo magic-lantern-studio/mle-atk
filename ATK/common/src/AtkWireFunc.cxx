@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2024 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -114,7 +114,7 @@ gettimeofday(&starttime);
 	HMODULE handle = LoadLibrary((LPCTSTR)path);
 #endif
 
-    char dso_func[256];
+    char dso_func[1024];
     void (*initClass)(void);// initClass function pointer
     initClass = NULL;
 

@@ -32,7 +32,7 @@ libmleatk_la_CPPFLAGS = \
 	-DMLE_NOT_MATH_DLL \
 	-DMLE_NOT_DWP_DLL \
 	-DMLE_NOT_RUNTIME_DLL \
-	-DMLE_NOT_CARRIER_DLL \
+	-DMLE_NOT_3DCAMERACARRIER_DLL \
 	-DMLE_NOT_3DSET_DLL \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/../../common/include \
