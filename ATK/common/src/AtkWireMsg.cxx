@@ -11,7 +11,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -156,11 +156,11 @@ AtkWireMsg::setMsgData(void* data, int len)
 int 
 AtkWireMsg::isReplyMsg()
 {
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	return(!_stricmp(m_msgName, REPLY_MSG_NAME));
 #else
     return(!strcasecmp(m_msgName, REPLY_MSG_NAME));
-#endif /* ! WIN32 */
+#endif /* ! _WINDOWS */
 }
 
 void 

@@ -31,22 +31,33 @@
 //
 // COPYRIGHT_END
 
-// The following ifdef block is the standard way of creating macros which make exporting 
-// from a DLL simpler. All files within this DLL are compiled with the MLE_ATK_EXPORTS
-// symbol defined on the command line. This symbol should not be defined on any project
-// that uses this DLL. This way any other project whose source files include this file see 
-// MLE_ATK_API functions as being imported from a DLL, whereas this DLL sees symbols
-// defined with this macro as being exported.
-#if defined(_WINDOWS) && defined(MLE_ATK_DLL)
-  #ifdef MLE_ATK_EXPORTS
-    #define MLE_ATK_API __declspec(dllexport)
-  #else
-    #define MLE_ATK_API __declspec(dllimport)
-  #endif
-#else
-  #ifdef MLE_ATK_EXPORTS
-    #define MLE_ATK_API
-  #else
-    #define MLE_ATK_API
-  #endif
+// mleatk_rehearsal.cpp : Defines the entry point for the DLL application.
+
+// Include mleatk header files.
+#include "stdafx.h"
+#include "mle/mleatk_rehearsal.h"
+
+
+#ifdef _MANAGED
+#pragma managed(push, off)
+#endif
+
+BOOL APIENTRY DllMain( HMODULE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+					 )
+{
+	switch (ul_reason_for_call)
+	{
+	case DLL_PROCESS_ATTACH:
+	case DLL_THREAD_ATTACH:
+	case DLL_THREAD_DETACH:
+	case DLL_PROCESS_DETACH:
+		break;
+	}
+    return TRUE;
+}
+
+#ifdef _MANAGED
+#pragma managed(pop)
 #endif

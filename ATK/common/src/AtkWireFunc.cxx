@@ -41,7 +41,7 @@
 //
 // COPYRIGHT_END
 
-#if defined(WIN32)
+#if defined(_WINDOWS)
 #include <windows.h>
 #endif
 #include <string.h>
@@ -96,7 +96,7 @@ AtkWireFunc::find(const char* msgName, int recv)
 
     // and path
     char path[PATH_MAX];
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	sprintf(path, "%s\\%s.dll", WIRE_FUNC_DSO_PATH, className);
 #else
     sprintf(path, "%s/%s.so", WIRE_FUNC_DSO_PATH, className);
@@ -110,7 +110,7 @@ gettimeofday(&starttime);
     // OK, try to load through DSO.
     //MlDSOLoader loader;
     //MlDSOLoader::loadFile(path);
-#ifdef WIN32
+#ifdef _WINDOWS
 	HMODULE handle = LoadLibrary((LPCTSTR)path);
 #endif
 
@@ -118,7 +118,7 @@ gettimeofday(&starttime);
     void (*initClass)(void);// initClass function pointer
     initClass = NULL;
 
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	sprintf(dso_func,"initClass");
     initClass = (void (*)(void))GetProcAddress(handle,dso_func);
 #else
@@ -196,7 +196,7 @@ AtkWireFunc::addToArray(const char* name, AtkCreateFunc createFunc)
 {
     struct AtkCreateWireFunc* cwf = new AtkCreateWireFunc;
     cwf->createFunc = createFunc;
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	cwf->name = _strdup(name);
 #else
     cwf->name = strdup(name);
@@ -210,7 +210,7 @@ AtkWireFunc::addToRecvArray(const char* name, AtkCreateFunc createFunc)
 {
     struct AtkCreateWireFunc* cwf = new AtkCreateWireFunc;
     cwf->createFunc = createFunc;
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	cwf->name = _strdup(name);
 #else
     cwf->name = strdup(name);

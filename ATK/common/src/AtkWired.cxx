@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2024 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -60,7 +60,7 @@ AtkWired::AtkWired(const char* name, AtkWire* wire, void* objID)
 {
     this->m_wire = wire;
     this->m_objID = objID;
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	this->m_name = name ? _strdup(name) : _strdup("");
 #else
     this->m_name = name ? strdup(name) : strdup("");

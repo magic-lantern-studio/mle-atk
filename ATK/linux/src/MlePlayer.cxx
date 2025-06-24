@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2024 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -103,9 +103,9 @@
 * Constructor, destructor, creation
 *****************************************************************************/
 
-#if defined(WIN32)
+#if defined(_WINDOWS)
 typedef void (__cdecl *SIG_PF)(int signal);
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 #if defined(__linux__)
 #define SIG_PF sighandler_t
 #endif /* __linux__ */
@@ -136,10 +136,10 @@ MlePlayer::MlePlayer(AtkWire* wire, void* objID)
     signal(SIGABRT, (SIG_PF) signalHandler);
 	signal(SIGSYS, (SIG_PF) signalHandler);
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	signal(SIGSEGV, (SIG_PF) signalHandler);
     signal(SIGABRT, (SIG_PF) signalHandler);
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 }
 
 void MlePlayer::signalHandler(int signal, ...)
@@ -163,10 +163,10 @@ MlePlayer::~MlePlayer()
     }
 }
 
-#if defined(WIN32)
+#if defined(_WINDOWS)
 #define STDOUT_FILENO _fileno(stdout)
 #define STDERR_FILENO _fileno(stderr)
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 /*****************************************************************************
 * Creating a player
@@ -3028,14 +3028,14 @@ MlePlayer::recvReparentWindow(Window w)
 }
 #endif /* !Q_OS_UNIX */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 void
 MlePlayer::recvReparentWindow(HWND w)
 {
     MLE_ASSERT(MleStage::g_theStage);
     MleStage::g_theStage->reparentWindow(w);
 }
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 /*****************************************************************************
 * Setting a sets name
@@ -3212,7 +3212,7 @@ MlePlayer::sendWindow(Window wid)
 }
 #endif /* ! Q_OS_UNIX */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 int
 MlePlayer::sendWindow(HWND wid)
 {
@@ -3223,7 +3223,7 @@ MlePlayer::sendWindow(HWND wid)
     }
     return(0);
 }
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 /*****************************************************************************
 * Sending back pick information
@@ -3462,7 +3462,7 @@ MlePlayer::sendRightMouse(XEvent* ev)
 }
 #endif /* ! Q_OS_UNIX */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 int 
 MlePlayer::sendRightMouse(DWORD *ev)
 {
@@ -3481,7 +3481,7 @@ MlePlayer::sendRightMouse(DWORD *ev)
     delete msg;
     return(0);
 }
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 /*****************************************************************************
 * Registering with the stage

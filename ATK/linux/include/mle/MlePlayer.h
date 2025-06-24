@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -70,11 +70,11 @@ class MlTransform;
 #include <X11/Xlib.h>
 #endif /* ! MLE_QT */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers.
 #include <windows.h>
 #include <signal.h>
-#endif
+#endif /* _WINDOWS */
 
 #include "mle/mleatk_rehearsal.h"
 
@@ -312,9 +312,9 @@ class MLE_ATK_API MlePlayer : public AtkWired
     virtual void recvReparentWindow(Window w);
 #endif /* ! Q_OS_UNIX */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	virtual void recvReparentWindow(HWND w);
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
     // Setting a sets name.
     virtual void recvSetSetName(char* oldSetName, char* newSetName);
@@ -341,9 +341,9 @@ class MLE_ATK_API MlePlayer : public AtkWired
     virtual int sendWindow(Window w);
 #endif /* ! Q_OS_UNIX */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	virtual int sendWindow(HWND w);
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
     // Loading media refs across the wire.
     virtual MleDwpMediaRef* sendGetWorkprintMediaRef(const char* id);
@@ -377,9 +377,9 @@ class MLE_ATK_API MlePlayer : public AtkWired
     virtual int sendRightMouse(XEvent* e);
 #endif /* ! Q_OS_UNIX */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	virtual int sendRightMouse(DWORD *e);
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
 
     /**************************************************************************
@@ -444,9 +444,9 @@ class MLE_ATK_API MlePlayer : public AtkWired
     static void rightMouseCB(XEvent* e, void* clientData);
 #endif /* ! Q_OS_UNIX */
 #endif /* __linux__ */
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	static void rightMouseCB(DWORD e, void* clientData);
-#endif /* WIN32 */
+#endif /* _WINDOWS */
 
     // Getting pref height and width.
     int getPrefWidth() { return m_prefWidth; }

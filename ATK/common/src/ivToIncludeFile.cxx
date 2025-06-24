@@ -29,7 +29,7 @@
 // where the stuff between the quotes is a hex version of the binary file.
 //
 
-#if defined(WIN32)
+#if defined(_WINDOWS)
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
@@ -38,7 +38,7 @@
 #include <getopt.h>
 #include <unistd.h>
 #endif
-#if defined(WIN32)
+#if defined(_WINDOWS)
 #include <mle/mlGetopt.h>
 #endif
 #include <string.h>

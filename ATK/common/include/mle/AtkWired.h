@@ -102,7 +102,7 @@ class MLE_ATK_API AtkWired
  
     void setWire(AtkWire* w) { m_wire = w; }
 
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	int getPID() { return m_pid; }
     void setPID(int p) { m_pid = p; }
 #else
@@ -149,7 +149,7 @@ class MLE_ATK_API AtkWired
     AtkWire* m_wire;
     void* m_objID;
     char* m_name;
-#if defined(WIN32)
+#if defined(_WINDOWS)
 	int m_pid;
 #else
     pid_t m_pid;
