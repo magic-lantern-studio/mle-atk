@@ -48,6 +48,9 @@
     <ClInclude Include="..\..\include\mle\MlePlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\common\include\mle\mleatk_rehearsal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

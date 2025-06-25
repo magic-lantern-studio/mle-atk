@@ -321,6 +321,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_ROOT)\include\mle
     <ClInclude Include="..\..\..\common\include\mle\AtkWired.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkWireFunc.h" />
     <ClInclude Include="..\..\..\common\include\mle\AtkWireMsg.h" />
+    <ClInclude Include="..\..\..\common\include\mle\mleatk_rehearsal.h" />
     <ClInclude Include="..\..\include\mle\DwpPlatformDefs.h" />
     <ClInclude Include="..\..\include\mle\DwpPlatformTypes.h" />
     <ClInclude Include="..\..\include\mle\MlePlayer.h" />
