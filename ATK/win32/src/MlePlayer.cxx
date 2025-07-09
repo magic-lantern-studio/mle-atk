@@ -41,16 +41,21 @@
 //
 // COPYRIGHT_END
 
+// Include Magic Lantern Player header files. 
 #include "mle/MlePlayer.h"
 
+// Include Magic Lantern Authoring Toolkit header files.
 #include "mle/AtkWire.h"
 #include "mle/AtkWireMsg.h"
 #include "mle/AtkCommonStructs.h"
 
+// Include Magic Lantern utility header files.
 #include <mle/mlFileio.h>
 
+// Include Magic Lantern math header files.
 #include <math/transfrm.h>
 
+// Include Magic Lantern Digital Workprint header files.
 #include <mle/DwpItem.h>
 #include <mle/DwpActor.h>
 #include <mle/DwpInput.h>
@@ -65,7 +70,7 @@
 #include <mle/DwpDataUnion.h>
 #include <mle/DwpOutput.h>
 
-
+// Include Magic Lantern Runtime Engine header files.
 #include "mle/MleStageFuncs.h"
 #include "mle/MleActor.h"
 #include "mle/MleActorClass.h"
@@ -75,7 +80,6 @@
 #include "mle/MleGroupClass.h"
 #include "mle/MleScene.h"
 #include "mle/MleSceneClass.h"
-
 
 #include "mle/MleLoad.h"
 #include "mle/MleStage.h"

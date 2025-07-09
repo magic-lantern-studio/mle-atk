@@ -157,7 +157,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\common\include;..\..\..\win32\include;$(MLE_ROOT)\include;$(COINDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MLE_REHEARSAL;MLE_DIGITAL_WORKPRINT;MLE_DEBUG;MLE_NOT_UTIL_DLL;MLE_NOT_MATH_DLL;MLE_DWP_DLL;MLE_RUNTIME_DLL;MLE_3DSET_DLL;MLE_3DCAMERACARRIER_DLL;MLE_ATK_DLL;MLE_ATK_EXPORTS;ML_MATH_DEBUG=1;ML_FIXED_POINT=0;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

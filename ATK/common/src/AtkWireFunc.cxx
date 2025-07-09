@@ -64,9 +64,9 @@ AtkCreateWireFuncArray AtkWireFunc::g_wireFuncs;
 AtkCreateWireFuncArray AtkWireFunc::g_recvWireFuncs;
 
 #if defined(__linux__) || defined(__APPLE__)
-#define WIRE_FUNC_DSO_PATH "/usr/share/mle/plug-ins/wirefuncs"
+#define WIRE_FUNC_DSO_PATH "/opt/MagicLantern/plug-ins/wirefuncs"
 #else
-#define WIRE_FUNC_DSO_PATH "C:\\Program Files\\Wizzer Works\\Auteur\\Magic Lantern\\plug-ins\\wirefuncs"
+#define WIRE_FUNC_DSO_PATH "C:\\Program Files\\MagicLantern\\plug-ins\\wirefuncs"
 #define PATH_MAX 1024
 #endif
 
@@ -268,4 +268,17 @@ void
 AtkWireFunc::operator delete(void *p)
 {
 	mlFree(p);
+}
+
+void*
+AtkWireFunc::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+AtkWireFunc::operator delete[](void* p)
+{
+    mlFree(p);
 }

@@ -246,3 +246,16 @@ AtkWired::operator delete(void *p)
 {
 	mlFree(p);
 }
+
+void*
+AtkWired::operator new[](size_t tSize)
+{
+    void* p = mlMalloc(tSize);
+    return p;
+}
+
+void
+AtkWired::operator delete[](void* p)
+{
+    mlFree(p);
+}

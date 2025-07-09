@@ -12,7 +12,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015-2021 Wizzer Works
+// Copyright (c) 2015-2025 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -325,6 +325,19 @@ AtkWire::operator new(size_t tSize)
 
 void
 AtkWire::operator delete(void *p)
+{
+	mlFree(p);
+}
+
+void*
+AtkWire::operator new[](size_t tSize)
+{
+	void* p = mlMalloc(tSize);
+	return p;
+}
+
+void
+AtkWire::operator delete[](void* p)
 {
 	mlFree(p);
 }
