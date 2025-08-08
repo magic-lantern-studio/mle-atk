@@ -1,0 +1,38 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		<DirectoryRef Id="HEADERS_INCLUDE_MLE">
+			<Component Id="HeaderFiles" Guid="{0C3CB5BC-9A2E-49AA-ABAC-0CDBFCF16123}">
+				<File Id="HeaderFile1" Source="..\..\..\..\common\include\mle\AtkBasicArray.h" />
+				<File Id="HeaderFile2" Source="..\..\..\..\common\include\mle\ATkCommonStructs.h" />
+				<File Id="HeaderFile3" Source="..\..\..\..\common\include\mle\AtkWire.h" />
+				<File Id="HeaderFile4" Source="..\..\..\..\common\include\mle\AtkWired.h" />
+				<File Id="HeaderFile5" Source="..\..\..\..\common\include\mle\AtkWireFunc.h" />
+				<File Id="HeaderFile6" Source="..\..\..\..\common\include\mle\AtkWireMsg.h" />
+				<File Id="HeaderFile7" Source="..\..\..\include\mle\DwpPlatformDefs.h" />
+				<File Id="HeaderFile8" Source="..\..\..\include\mle\DwpPlatformTypes.h" />
+				<File Id="HeaderFile9" Source="..\..\..\..\common\include\mle\mleatk_rehearsal.h" />
+				<File Id="HeaderFile10" Source="..\..\..\include\mle\MlePlayer.h" />
+			</Component>
+		</DirectoryRef>
+		<ComponentGroup Id="MleatkComponents" Directory="MLEROOT">
+			<Component Id="rehearsal" Directory="BIN64_REHEARSAL" Guid="{FCA67F70-D9E6-47CC-AD13-F70BB25C1E95}">
+				<File Id="mleatk_rehearsal" Source="$(var.mleatk_rehearsal.TargetPath)"/>
+			</Component>
+			<Component Id="tools" Directory="LIB64_TOOLS" Guid="{2067B3DB-F4E5-44B4-B3A9-A3DEBB07A0D4}">
+				<File Id="mleatk_tools" Source="$(var.mleatk.TargetPath)"/>
+			</Component>
+			<?if $(var.Configuration) = Debug ?>
+				<!-- Debug Package -->
+				<Component Id="rehearsal_lib" Directory="LIB64_REHEARSAL" >
+					<File Id="mleatk_rehearsal_lib" Source="$(var.mleatk_rehearsal.TargetDir)\mleatkd.lib"/>
+				</Component>
+			<?else?>
+				<!-- Release Package -->
+				<Component Id="rehearsal_lib" Directory="LIB64_REHEARSAL" >
+					<File Id="mleatk_rehearsal_lib" Source="$(var.mleatk_rehearsal.TargetDir)\mleatk.lib"/>
+				</Component>
+			<?endif?>
+			<ComponentRef Id="HeaderFiles" />
+		</ComponentGroup>
+	</Fragment>
+</Wix>
