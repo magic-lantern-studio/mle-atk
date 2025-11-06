@@ -1,17 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
@@ -25,17 +17,6 @@
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v143</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
@@ -50,12 +31,6 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -65,20 +40,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\mleatk_rehearsal\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\mleatk_rehearsal\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\mleatk_rehearsal\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mleatk</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mleatkd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>mleatk</TargetName>
@@ -86,69 +53,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>mleatkd</TargetName>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\common\include;..\..\..\win32\include;$(MLE_HOME)\Core\mlert\common\src\foundation;$(MLE_HOME)\Parts\sets\inventor;$(MLE_HOME)\Parts\roles\common\include;$(MLE_HOME)\DigitalWorkprint\lib\common\include;$(MLE_HOME)\Core\util\common\include;$(MLE_HOME)\Core\util\win32\include;$(MLE_HOME)\Core\math\common\include;$(COINDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MLE_REHEARSAL;MLE_DIGITAL_WORKPRINT;MLE_DEBUG;MLE_DLL;ML_MATH_DEBUG=1;ML_FIXED_POINT=0;WIN32;_DEBUG;_WINDOWS;_USRDLL;MLEATK_REHEARSAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>mlertd.lib;mlmathd.lib;DWPd.lib;ivrolesd.lib;Mle3dSetd.lib;MleIvStaged.lib;utild.lib;coin4d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)mleatkd.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(COINDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <PostBuildEvent>
-      <Command>mkdir $(MLE_HOME)\lib\rehearsal
-copy Win32\Debug\mleatk.lib $(MLE_HOME)\lib\rehearsal\mleatkd.lib
-mkdir $(MLE_HOME)\bin\rehearsal
-copy Win32\Debug\mleatkd.dll $(MLE_HOME)\bin\rehearsal
-mkdir $(MLE_HOME)\include\mle
-xcopy /y ..\..\..\win32\include\mle\*.h $(MLE_HOME)\include\mle
-xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
-</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <AdditionalIncludeDirectories>..\..\..\common\include;..\..\..\win32\include;$(MLE_HOME)\Core\mlert\common\src\foundation;$(MLE_HOME)\Parts\sets\inventor;$(MLE_HOME)\Parts\roles\common\include;$(MLE_HOME)\DigitalWorkprint\lib\common\include;$(MLE_HOME)\Core\util\common\include;$(MLE_HOME)\Core\util\win32\include;$(MLE_HOME)\Core\math\common\include;$(COINDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MLE_REHEARSAL;MLE_DIGITAL_WORKPRINT;MLE_DLL;ML_MATH_DEBUG=0;ML_FIXED_POINT=0;WIN32;NDEBUG;_WINDOWS;_USRDLL;MLEATK_REHEARSAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>mlert.lib;mlmath.lib;DWP.lib;ivroles.lib;Mle3dSet.lib;MleIvStage.lib;util.lib;coin4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)mleatk.dll</OutputFile>
-      <AdditionalLibraryDirectories>$(MLE_HOME)\lib\rehearsal;$(COINDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <PostBuildEvent>
-      <Command>mkdir $(MLE_HOME)\lib\rehearsal
-copy Win32\Release\mleatk.lib $(MLE_HOME)\lib\rehearsal\mleatk.lib
-mkdir $(MLE_HOME)\bin\rehearsal
-copy Win32\Release\mleatk.dll $(MLE_HOME)\bin\rehearsal
-mkdir $(MLE_HOME)\include\mle
-xcopy /y ..\..\..\win32\include\mle\*.h $(MLE_HOME)\include\mle
-xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
-</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -156,7 +60,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_HOME)\include\mle
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\common\include;..\..\..\win32\include;$(MLE_ROOT)\include;$(COINDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MLE_REHEARSAL;MLE_DIGITAL_WORKPRINT;MLE_DEBUG;MLE_NOT_UTIL_DLL;MLE_NOT_MATH_DLL;MLE_DWP_DLL;MLE_RUNTIME_DLL;MLE_3DSET_DLL;MLE_3DCAMERACARRIER_DLL;MLE_ATK_DLL;MLE_ATK_EXPORTS;ML_MATH_DEBUG=1;ML_FIXED_POINT=0;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MLE_REHEARSAL;MLE_DIGITAL_WORKPRINT;MLE_DEBUG;MLE_UTIL_DLL;MLE_MATH_DLL;MLE_DWP_DLL;MLE_RUNTIME_DLL;MLE_3DSET_DLL;MLE_3DCAMERACARRIER_DLL;MLE_ATK_DLL;MLE_ATK_EXPORTS;ML_MATH_DEBUG=1;ML_FIXED_POINT=0;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -200,7 +104,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_ROOT)\include\mle
     </Midl>
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\common\include;..\..\..\win32\include;$(MLE_ROOT)\include;$(COINDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MLE_REHEARSAL;MLE_DIGITAL_WORKPRINT;MLE_NOT_UTIL_DLL;MLE_NOT_MATH_DLL;MLE_DWP_DLL;MLE_RUNTIME_DLL;MLE_3DSET_DLL;MLE_3DCAMERACARRIER_DLL;MLE_ATK_DLL;MLE_ATK_EXPORTS;ML_MATH_DEBUG=0;ML_FIXED_POINT=0;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MLE_REHEARSAL;MLE_DIGITAL_WORKPRINT;MLE_UTIL_DLL;MLE_MATH_DLL;MLE_DWP_DLL;MLE_RUNTIME_DLL;MLE_3DSET_DLL;MLE_3DCAMERACARRIER_DLL;MLE_ATK_DLL;MLE_ATK_EXPORTS;ML_MATH_DEBUG=0;ML_FIXED_POINT=0;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -247,9 +151,7 @@ xcopy /y ..\..\..\common\include\mle\*.h $(MLE_ROOT)\include\mle
     <ClCompile Include="mleatk_rehearsal.cpp" />
     <ClCompile Include="..\..\..\win32\src\MlePlayer.cxx" />
     <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
