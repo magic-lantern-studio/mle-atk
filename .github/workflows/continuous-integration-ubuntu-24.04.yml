@@ -1,0 +1,57 @@
+name: Continuous Integration Build (Ubuntu 24.04)
+
+on:
+  workflow_dispatch:  # Allow manual triggers
+  push:
+    branches: [ "master" ]
+
+env:
+  MLE_ROOT: ${{ github.workspace }}/MagicLantern
+
+jobs:
+  ubuntu-build:
+    name: Ubuntu 24.04 Build (${{ matrix.build_type }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        build_type: [ Release, Debug ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # libx11-dev and libxt-dev provide the X11 headers included by the
+      # player and mlert headers.
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake libx11-dev libxt-dev
+
+      # Download the latest mle-core-mlert artifact into $MLE_ROOT. It contains
+      # the mle-core-mlert, mle-core-dpp, mle-core-dwp, mle-core-math and
+      # mle-core-util libraries and headers.
+      - name: Download mle-core-mlert artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download \
+            --repo magic-lantern-studio/mle-core-mlert \
+            --name mle-core-mlert-ubuntu-24.04-${{ matrix.build_type }} \
+            --dir "$MLE_ROOT"
+          ls -R "$MLE_ROOT"
+
+      - name: Build and install ATK
+        run: |
+          cmake -S ATK/linux/rehearsal -B build/libmleatk -G "Unix Makefiles" \
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+            -DCMAKE_INSTALL_PREFIX="$MLE_ROOT" \
+            -DCMAKE_PREFIX_PATH="$MLE_ROOT"
+          cmake --build build/libmleatk --parallel 4
+          cmake --install build/libmleatk
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mle-atk-ubuntu-24.04-${{ matrix.build_type }}
+          path: ${{ env.MLE_ROOT }}
