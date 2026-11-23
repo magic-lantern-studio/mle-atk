@@ -28,16 +28,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential cmake libx11-dev libxt-dev
 
-      # Download the latest mle-core-mlert artifact into $MLE_ROOT. It contains
+      # Download the latest mle-parts sets artifact into $MLE_ROOT. It contains
       # the mle-core-mlert, mle-core-dpp, mle-core-dwp, mle-core-math and
-      # mle-core-util libraries and headers.
-      - name: Download mle-core-mlert artifacts
+      # mle-core-util libraries and headers, and the mle-parts roles and sets
+      # headers included by the player.
+      - name: Download mle-parts artifacts
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run download \
-            --repo magic-lantern-studio/mle-core-mlert \
-            --name mle-core-mlert-ubuntu-24.04-${{ matrix.build_type }} \
+            --repo magic-lantern-studio/mle-parts \
+            --name mle-parts-sets-ubuntu-24.04-${{ matrix.build_type }} \
             --dir "$MLE_ROOT"
           ls -R "$MLE_ROOT"
 
